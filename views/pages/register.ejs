@@ -1,0 +1,94 @@
+
+<form action="/api/register" id="registerForm" method="POST">
+
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+    </div>
+
+    <div>
+        <label for="email">Email:</label>
+        <input
+                type="email"
+                id="email"
+                name="email"
+                required
+        >
+    </div>
+
+    <div>
+        <label for="password">Šifra:</label>
+        <input
+                type="password"
+                id="password"
+                name="password"
+                required
+        >
+    </div>
+
+    <div>
+        <label for="confirmPassword">Potvrđena šifra:</label>
+        <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                required
+        >
+    </div>
+
+    <div>
+        <input
+                type="checkbox"
+                id="terms"
+                name="terms"
+                required
+        >
+
+        <label for="terms">
+            I agree with the rules
+        </label>
+    </div>
+
+    <button type="submit">Register</button>
+
+</form>
+
+<script>
+    const registerForm = document.getElementById('registerForm');
+
+    registerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const name = registerForm.name.value;
+        const email = registerForm.email.value;
+        const password = registerForm.password.value;
+        const confirmPassword = registerForm.confirmPassword.value;
+        const terms = registerForm.terms.checked;
+
+        const res = await fetch("/api/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify({
+                name,
+                email,
+                password,
+                confirmPassword,
+                terms
+            })
+        });
+
+        if (!res.ok) {
+            throw new Error("Registration failed.");
+        }
+        const data = await res.json();
+
+        if (data.success) {
+            window.location.reload();
+        }
+    })
+</script>
+
+

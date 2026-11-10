@@ -1,0 +1,204 @@
+/* --- OSNOVA --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- NAVIGACIJA --- */
+.navbar {
+    background-color: #0f172a;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 40px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.navbar .logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #38bdf8;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+}
+
+#logoutBtn {
+    color: #f87171;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* --- KORPA I SINGLE PRODUCT KONTEJNERI (Centrirani kartični dizajn) --- */
+.cart-wrapper, .product-single-wrapper {
+    max-width: 600px;
+    width: 90%;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.cart-wrapper h1, .product-single-wrapper h1 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    color: #0f172a;
+}
+
+/* --- DUGMAD (Mala, kompaktna, centrirana) --- */
+.cart-actions, .button-wrapper {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center; /* Centrira dugme u okviru kartice */
+}
+
+/* Dugme Finiširaj porudžbinu */
+#finishOrderBtn {
+    width: auto !important;
+    padding: 10px 24px;
+    background-color: #d97706; /* Suptilna narandžasta */
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#finishOrderBtn:hover {
+    background-color: #b45309;
+}
+
+/* Dugme Add to Cart */
+#addToCart {
+    width: auto !important;
+    padding: 10px 24px;
+    background-color: #059669; /* Prirodna zelena */
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#addToCart:hover {
+    background-color: #047857;
+}
+
+/* --- HOME STRANICA I PROIZVODI --- */
+.products {
+    max-width: 1000px;
+    width: 90%;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.product-card, .cart-item {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.cart-item {
+    margin-bottom: 12px;
+}
+
+/* --- FORMA (LOGIN / REGISTER) --- */
+form {
+    max-width: 400px;
+    width: 90%;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+form div {
+    margin-bottom: 16px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #475569;
+}
+
+form input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+form button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #0284c7;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* --- FUTER --- */
+.footer {
+    background-color: #0f172a;
+    color: #94a3b8;
+    text-align: center;
+    padding: 24px;
+    margin-top: auto;
+    font-size: 0.9rem;
+}
+
+.social-links {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.social-links a {
+    color: #38bdf8;
+    text-decoration: none;
+}

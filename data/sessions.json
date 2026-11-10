@@ -1,0 +1,14 @@
+{
+  "c128f465-4fbb-41b8-bea1-6fe8705c82a2": {
+    "userId": 11,
+    "createdAt": 1793800137286,
+    "shoppingCart": [
+      "4"
+    ]
+  },
+  "21e666f1-4e9d-4dc9-bfd5-e189600980d4": {
+    "userId": 12,
+    "createdAt": 1794308013202,
+    "shoppingCart": []
+  }
+}

@@ -1,0 +1,80 @@
+
+<div class="cart-wrapper">
+<h1>Moja korpa</h1>
+
+<div id="cart-container">
+    <p>Učitavanje korpe...</p>
+</div>
+
+    <div class="cart-actions">
+<button id="finishOrderBtn">Finiširaj porudžbinu</button>
+    </div>
+</div>
+
+<script>
+    async function fetchCart() {
+        try {
+            const res = await fetch("/api/cart", {
+                method: "GET",
+                credentials: "include",
+            });
+
+            if(!res.ok) {
+                if (res.status === 401) {
+                    window.location.href = "/login";
+                    return;
+                }
+                throw new Error("Greška pri učitavanju korpe");
+            }
+            const data = await res.json();
+            const container = document.getElementById("cart-container");
+
+            if(!data.products || data.products.length === 0) {
+                container.innerHTML = "<p>Vaša korpa je prazna.</p>";
+                return;
+            }
+            container.innerHTML = data.products.map(product => `
+                <div class="cart-item">
+               <h3>${product.name}</h3>
+               <p>${product.price}</p>
+              </div>`).join("");
+            } catch (error) {
+            console.error("Greška:", error);
+            document.getElementById("cart-container").innerHTML = "<p>Došlo je do greške pri učitavanju</p>";
+        }
+    }
+    fetchCart();
+
+    const finishOrderBtn = document.getElementById("finishOrderBtn");
+    if(finishOrderBtn) {
+    finishOrderBtn.addEventListener("click", async () => {
+        finishOrderBtn.disabled = true;
+        finishOrderBtn.textContent = "Obrada...";
+
+        try {
+            const res = await fetch("/api/finish-order", {
+                method: "POST",
+                credentials: "include",
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                alert(data.error || "Greška pri poručivanju");
+                finishOrderBtn.disabled = false;
+                finishOrderBtn.textContent = "Finiširaj porudžbinu";
+                return;
+            }
+            alert("Uspešno ste poručili");
+            window.location.reload();
+
+        } catch (error) {
+            console.error("Greška:", error);
+            alert("Došlo je do greške pri komunikaciji sa serverom");
+            finishOrderBtn.disabled = false;
+            finishOrderBtn.textContent = "Finiširaj porudžbinu";
+        }
+
+    });
+    }
+</script>
